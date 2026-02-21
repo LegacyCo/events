@@ -1,11 +1,343 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Parking – Held / In Between</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=EB+Garamond:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet" />
-  <style> ...full contents above... </style>
+  <link href="https://fonts.googleapis.com/css2?family=Ovo&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Helvetica, Arial, sans-serif;
+      background: #f0ece4;
+      color: #1a1a1a;
+      line-height: 1.6;
+      padding: 2.5rem 1.25rem 4rem;
+    }
+
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    /* ── HEADER ── */
+    .site-label {
+      font-family: Helvetica, Arial, sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #1a1a1a;
+      text-align: center;
+      margin-bottom: 0.6rem;
+    }
+
+    .rule { border: none; border-top: 1px solid #1a1a1a; margin: 0; }
+    .rule-thin { border: none; border-top: 0.5px solid #1a1a1a; margin: 0; }
+
+    .title-block {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      padding: 0.5rem 0 0.4rem;
+    }
+
+    .title-held {
+      font-family: 'Ovo', serif;
+      font-weight: 900;
+      font-size: clamp(3.2rem, 12vw, 5.5rem);
+      letter-spacing: -0.01em;
+      line-height: 1;
+      color: #1a1a1a;
+    }
+
+    .title-slash {
+      font-family: 'Ovo', serif;
+      font-weight: 400;
+      font-size: clamp(2rem, 7vw, 3.5rem);
+      color: #1a1a1a;
+      padding: 0 0.3rem;
+      align-self: flex-start;
+      margin-top: 0.15em;
+    }
+
+    .title-inbetween {
+      font-family: Helvetica, Arial, sans-serif;
+      font-size: clamp(0.85rem, 3vw, 1.25rem);
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      line-height: 1.25;
+      color: #1a1a1a;
+      align-self: center;
+    }
+
+    .subtitle-row {
+      display: flex;
+      align-items: stretch;
+      gap: 0;
+      padding: 0.65rem 0;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+      margin-bottom: 2rem;
+    }
+
+    .subtitle-text {
+      flex: 1;
+      font-size: 0.88rem;
+      line-height: 1.45;
+      color: #1a1a1a;
+      padding-right: 1rem;
+    }
+
+    .subtitle-meta {
+      border-left: 1px solid #1a1a1a;
+      padding-left: 1rem;
+      font-family: Helvetica, Arial, sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      line-height: 1.3;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+    }
+
+    /* ── SECTION HEADERS ── */
+    .section-header {
+      margin-bottom: 1.25rem;
+    }
+
+    .section-header .eyebrow {
+      font-family: Helvetica, Arial, sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #1a1a1a;
+      margin-bottom: 0.1rem;
+    }
+
+    .section-header h2 {
+      font-family: 'Ovo', serif;
+      font-weight: 900;
+      font-size: clamp(1.8rem, 6vw, 2.8rem);
+      letter-spacing: -0.01em;
+      line-height: 1.05;
+      color: #1a1a1a;
+    }
+
+    /* ── CARDS ── */
+    .card {
+      border-top: 1px solid #1a1a1a;
+      padding: 1.5rem 0 1.75rem;
+      margin-bottom: 0;
+    }
+
+    .card:last-of-type {
+      border-bottom: 1px solid #1a1a1a;
+    }
+
+    /* ── SUMMARY ── */
+    .steps {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .steps li {
+      display: flex;
+      gap: 0.85rem;
+      align-items: flex-start;
+      padding: 0.55rem 0;
+      border-bottom: 0.5px solid #c8c4bc;
+      font-size: 0.97rem;
+      color: #1a1a1a;
+    }
+
+    .steps li:last-child { border-bottom: none; }
+
+    .step-num {
+      font-family: 'Ovo', serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      line-height: 1.4;
+      min-width: 1.4rem;
+      color: #1a1a1a;
+    }
+
+    .lantern-tip {
+      margin-top: 1.1rem;
+      padding: 0.75rem 1rem;
+      border: 0.5px solid #1a1a1a;
+      font-size: 0.93rem;
+      color: #1a1a1a;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* ── INSTRUCTION GROUPS ── */
+    .instr-group {
+      margin-bottom: 1.1rem;
+    }
+
+    .instr-group:last-child { margin-bottom: 0; }
+
+    .instr-label {
+      font-family: Helvetica, Arial, sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: #1a1a1a;
+      margin-bottom: 0.3rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .instr-label::after {
+      content: '';
+      flex: 1;
+      border-top: 0.5px solid #c8c4bc;
+    }
+
+    .instr-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .instr-list li {
+      font-size: 0.95rem;
+      color: #1a1a1a;
+      padding: 0.25rem 0 0.25rem 1.1rem;
+      position: relative;
+    }
+
+    .instr-list li::before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      font-style: normal;
+      font-size: 0.8rem;
+      top: 0.35rem;
+    }
+
+    /* ── ALERT ── */
+    .alert {
+      border: 0.5px solid #1a1a1a;
+      padding: 0.75rem 1rem;
+      margin-bottom: 1.5rem;
+      font-size: 0.93rem;
+    }
+
+    .alert strong {
+      font-style: normal;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── OVERFLOW LINK ── */
+    .map-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: Helvetica, Arial, sans-serif;
+      font-size: 0.95rem;
+      color: #1a1a1a;
+      text-decoration: none;
+      border-bottom: 1px solid #1a1a1a;
+      padding-bottom: 0.1rem;
+      margin-bottom: 0.5rem;
+      display: inline-block;
+    }
+
+    .map-link:hover { opacity: 0.6; }
+
+    /* ── VIDEO HINT ── */
+    .video-hint {
+      font-size: 0.88rem;
+      color: #1a1a1a;
+      text-align: center;
+      padding: 1rem 0 0.5rem;
+      letter-spacing: 0.02em;
+    }
+
+    /* ── VIDEOS ── */
+    .videos {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    @media (max-width: 520px) {
+      .videos { grid-template-columns: 1fr; }
+    }
+
+    .video-card {
+      border: 1px solid #1a1a1a;
+      overflow: hidden;
+    }
+
+    .video-title {
+      background: #1a1a1a;
+      color: #f0ece4;
+      font-family: Helvetica, Arial, sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 0.5rem 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .video-card iframe {
+      width: 100%;
+      display: block;
+      height: 220px;
+      border: none;
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid #1a1a1a;
+      padding-top: 0.75rem;
+      margin-top: 2rem;
+    }
+
+    .footer p {
+      font-size: 0.88rem;
+      color: #1a1a1a;
+    }
+
+    .footer a {
+      color: #1a1a1a;
+      text-decoration: none;
+      border-bottom: 0.5px solid #1a1a1a;
+    }
+
+    .footer a:hover { opacity: 0.6; }
+
+    /* decorative slash divider */
+    .slash-divider {
+      text-align: right;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: #1a1a1a;
+      line-height: 0;
+      margin: -0.5rem 0 0.5rem;
+      opacity: 0.25;
+      user-select: none;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
@@ -21,7 +353,138 @@
     </div>
 
     <div class="subtitle-row">
-      <p class="subtitle-text">a night celebrating growth and resilience<br>through music, poetry, and connection...</p> <!-- ...remaining HTML... -->
+      <p class="subtitle-text">a night celebrating growth and resilience<br>through music, poetry, and connection.</p>
+      <div class="subtitle-meta">FEB 22<br>5 – 7 PM</div>
+    </div>
+
+    <!-- ── PARKING HEADER ── -->
+    <div class="section-header">
+      <p class="eyebrow">Getting Here</p>
+      <h2>PARKING<br>INSTRUCTIONS</h2>
+    </div>
+
+    <!-- ── QUICK SUMMARY ── -->
+    <div class="card">
+      <div class="section-header" style="margin-bottom:0.9rem;">
+        <p class="eyebrow">Quick Summary</p>
+      </div>
+      <ol class="steps">
+        <li>
+          <span class="step-num">1</span>
+          <span>Park at <strong>1405 Sunset Drive</strong> (main) or the overflow lot nearby</span>
+        </li>
+        <li>
+          <span class="step-num">2</span>
+          <span>The event is at <strong>1413 Sunset Drive</strong> — enter through the <strong>back entrance</strong></span>
+        </li>
+        <li>
+          <span class="step-num">3</span>
+          <span>From main parking, walk through the <strong>side yard</strong> to reach 1413</span>
+        </li>
+        <li>
+          <span class="step-num">4</span>
+          <span>From overflow, follow the <strong>walkway through the backyard</strong> to the rear entrance</span>
+        </li>
+      </ol>
+      <div class="lantern-tip">🏮 Not sure where to go? Follow the lights — the lanterns will guide you in.</div>
+    </div>
+
+    <!-- ── ALERT ── -->
+    <div class="alert" style="margin-top:1.5rem;">
+      <strong>Please note:</strong> Do not park past the white storage building — that space belongs to the neighbor.
+    </div>
+
+    <!-- ── MAIN PARKING ── -->
+    <div class="card">
+      <div class="section-header">
+        <p class="eyebrow">Main Parking</p>
+        <h2>1405 SUNSET<br>DRIVE</h2>
+      </div>
+
+      <div class="instr-group">
+        <p class="instr-label">First to Arrive</p>
+        <ul class="instr-list">
+          <li>Pull all the way up to the fence behind the storage building</li>
+          <li>Park as close to the edge of the storage building as possible</li>
+        </ul>
+      </div>
+
+      <div class="instr-group">
+        <p class="instr-label">Everyone Else</p>
+        <ul class="instr-list">
+          <li>Park in a line starting from the first spot and work your way back</li>
+        </ul>
+      </div>
+
+      <div class="instr-group">
+        <p class="instr-label">Optional</p>
+        <ul class="instr-list">
+          <li>You may park in the garage or covered carport if you're comfortable (the truck will be gone)</li>
+          <li>There are a few additional spots nearby</li>
+        </ul>
+      </div>
+
+      <div class="instr-group">
+        <p class="instr-label">When Parking</p>
+        <ul class="instr-list">
+          <li>Park as close to the wall as possible so others can exit easily</li>
+        </ul>
+      </div>
+
+      <div class="instr-group">
+        <p class="instr-label">When Leaving</p>
+        <ul class="instr-list">
+          <li>If you parked in a tight spot, please exit as promptly as you can to help others get out</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ── OVERFLOW PARKING ── -->
+    <div class="card">
+      <div class="section-header">
+        <p class="eyebrow">Overflow Parking</p>
+        <h2>OVERFLOW<br>LOCATION</h2>
+      </div>
+      <ul class="instr-list" style="margin-bottom:0.5rem;">
+        <li>
+          <a class="map-link" href="https://www.google.com/maps/dir/35.7092278,-79.8358333/35.7085648,-79.8357663/@35.7087548,-79.834838,18z/data=!3m1!4b1!4m5!4m4!1m1!4e1!1m1!4e1?entry=ttu&g_ep=EgoyMDI2MDIxOC4wIKXMDSoASAFQAw%3D%3D"
+             target="_blank" rel="noopener">
+            📍 View Overflow Parking on Google Maps
+          </a>
+        </li>
+        <li>Use this location if the main parking area is full</li>
+        <li>A walkway through the backyard leads to the rear entrance of 1413</li>
+      </ul>
+    </div>
+
+    <!-- ── VIDEOS ── -->
+    <p class="video-hint">Need a visual? Video walkthroughs of both parking areas are below.</p>
+
+    <div class="videos">
+      <div class="video-card">
+        <div class="video-title">▶ &nbsp;Main Parking</div>
+        <iframe
+          src="https://drive.google.com/file/d/13BzBlk4zk408QGwH6TnR8Sfy44Nd1Wgc/preview"
+          allow="autoplay"
+          allowfullscreen>
+        </iframe>
+      </div>
+      <div class="video-card">
+        <div class="video-title">▶ &nbsp;Overflow Parking</div>
+        <iframe
+          src="https://drive.google.com/file/d/1n8c5N40vfMNGAsGhmJT2r1Q1PgcTGe0S/preview"
+          allow="autoplay"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+
+    <!-- ── FOOTER ── -->
+    <div class="footer">
+      <p><em>Questions? <a href="mailto:info@bridgeandsafehouse.org">info@bridgeandsafehouse.org</a></em></p>
+      <p><em>tickets at <a href="https://bridgeandsafehouse.org/events" target="_blank" rel="noopener">bridgeandsafehouse.org/events</a> &nbsp;|&nbsp; $20</em></p>
+    </div>
+
   </div>
 </body>
 </html>
