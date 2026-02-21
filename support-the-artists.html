@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -221,6 +222,40 @@
       margin-top: 0.2rem;
     }
 
+    /* ── PAGE TITLE ROW ── */
+    .page-title-row {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .signup-link {
+      font-family: Helvetica, Arial, sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #1a1a1a;
+      text-decoration: none;
+      text-align: right;
+      line-height: 1.5;
+      border-bottom: 1px solid #1a1a1a;
+      padding-bottom: 0.1rem;
+      white-space: nowrap;
+      flex-shrink: 0;
+      align-self: flex-end;
+    }
+
+    .signup-link span {
+      display: block;
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      opacity: 0.6;
+    }
+
+    .signup-link:hover { opacity: 0.5; }
+
     /* ── FOOTER ── */
     .footer {
       display: flex;
@@ -267,8 +302,16 @@
 
     <!-- ── PAGE TITLE ── -->
     <div class="page-title">
-      <p class="eyebrow">The Artists</p>
-      <h1>SUPPORT THEIR<br>MISSION</h1>
+      <div class="page-title-row">
+        <div>
+          <p class="eyebrow">The Artists</p>
+          <h1>SUPPORT THEIR<br>MISSION</h1>
+        </div>
+        <a class="signup-link" href="https://www.zeffy.com/en-US/organizations/bridge-and-safehouse" target="_blank" rel="noopener">
+          Stay connected →
+          <span>Sign up for updates</span>
+        </a>
+      </div>
       <hr class="rule" />
     </div>
 
