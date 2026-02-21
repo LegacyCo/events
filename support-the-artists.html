@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Support Their Mission – Held / In Between</title>
+  <link href="https://fonts.googleapis.com/css2?family=Ovo&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Helvetica, Arial, sans-serif;
+      background: #f0ece4;
+      color: #1a1a1a;
+      line-height: 1.6;
+      padding: 2.5rem 1.25rem 4rem;
+    }
+
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    /* ── HEADER ── */
+    .site-label {
+      font-family: Helvetica, Arial, sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #1a1a1a;
+      text-align: center;
+      margin-bottom: 0.6rem;
+    }
+
+    hr.rule { border: none; border-top: 1px solid #1a1a1a; }
+
+    .title-block {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      padding: 0.5rem 0 0.4rem;
+    }
+
+    .title-held {
+      font-family: 'Ovo', serif;
+      font-size: clamp(3.2rem, 12vw, 5.5rem);
+      line-height: 1;
+      color: #1a1a1a;
+    }
+
+    .title-slash {
+      font-family: 'Ovo', serif;
+      font-size: clamp(2rem, 7vw, 3.5rem);
+      color: #1a1a1a;
+      padding: 0 0.3rem;
+      align-self: flex-start;
+      margin-top: 0.15em;
+    }
+
+    .title-inbetween {
+      font-family: Helvetica, Arial, sans-serif;
+      font-size: clamp(0.85rem, 3vw, 1.25rem);
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      line-height: 1.25;
+      color: #1a1a1a;
+      align-self: center;
+    }
+
+    .subtitle-row {
+      display: flex;
+      align-items: stretch;
+      padding: 0.65rem 0;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+      margin-bottom: 2.5rem;
+    }
+
+    .subtitle-text {
+      flex: 1;
+      font-size: 0.88rem;
+      line-height: 1.45;
+      color: #1a1a1a;
+      padding-right: 1rem;
+    }
+
+    .subtitle-meta {
+      border-left: 1px solid #1a1a1a;
+      padding-left: 1rem;
+      font-size: 0.88rem;
+      font-weight: 600;
+      line-height: 1.3;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+    }
+
+    /* ── PAGE TITLE ── */
+    .page-title {
+      margin-bottom: 1.75rem;
+    }
+
+    .eyebrow {
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #1a1a1a;
+      margin-bottom: 0.2rem;
+    }
+
+    .page-title h1 {
+      font-family: 'Ovo', serif;
+      font-size: clamp(2rem, 7vw, 3.2rem);
+      line-height: 1.05;
+      color: #1a1a1a;
+      margin-bottom: 0.75rem;
+    }
+
+    /* ── ARTIST GRID ── */
+
+    /* Row 1: 3 across */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      margin-bottom: 1.25rem;
+    }
+
+    /* Rows 2 & 3: 2 across, centered */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+      margin-bottom: 1.25rem;
+      max-width: calc(66.66% + 0.83rem);
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    @media (max-width: 560px) {
+      .grid-3,
+      .grid-2 {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 100%;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .grid-3,
+      .grid-2 {
+        grid-template-columns: 1fr;
+        max-width: 100%;
+      }
+    }
+
+    /* ── ARTIST CARD ── */
+    .artist-card {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .artist-photo-wrap {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      overflow: hidden;
+      background: #d8d4cc;
+      margin-bottom: 0.6rem;
+    }
+
+    .artist-photo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+      filter: grayscale(100%);
+    }
+
+    /* placeholder shown when image is missing */
+    .photo-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #888;
+    }
+
+    .artist-name {
+      font-family: 'Ovo', serif;
+      font-size: 1.15rem;
+      line-height: 1.2;
+      color: #1a1a1a;
+      margin-bottom: 0.25rem;
+    }
+
+    .artist-link {
+      font-size: 0.78rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #1a1a1a;
+      text-decoration: none;
+      border-bottom: 1px solid #1a1a1a;
+      padding-bottom: 0.05rem;
+      display: inline-block;
+      transition: opacity 0.15s;
+    }
+
+    .artist-link:hover { opacity: 0.5; }
+
+    .coming-soon {
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #999;
+      margin-top: 0.2rem;
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      border-top: 1px solid #1a1a1a;
+      padding-top: 0.75rem;
+      margin-top: 2.5rem;
+    }
+
+    .footer p {
+      font-size: 0.82rem;
+      color: #1a1a1a;
+    }
+
+    .footer a {
+      color: #1a1a1a;
+      text-decoration: none;
+      border-bottom: 0.5px solid #1a1a1a;
+    }
+
+    .footer a:hover { opacity: 0.6; }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- ── HEADER ── -->
+    <p class="site-label">Bridge + Safehouse Presents</p>
+    <hr class="rule" />
+
+    <div class="title-block">
+      <span class="title-held">HELD</span>
+      <span class="title-slash">/</span>
+      <span class="title-inbetween">IN<br>BETWEEN</span>
+    </div>
+
+    <div class="subtitle-row">
+      <p class="subtitle-text">a night celebrating growth and resilience<br>through music, poetry, and connection.</p>
+      <div class="subtitle-meta">FEB 22<br>5 – 7 PM</div>
+    </div>
+
+    <!-- ── PAGE TITLE ── -->
+    <div class="page-title">
+      <p class="eyebrow">The Artists</p>
+      <h1>SUPPORT THEIR<br>MISSION</h1>
+      <hr class="rule" />
+    </div>
+
+    <!-- ── ROW 1: Collins, Emily, Heather ── -->
+    <div class="grid-3">
+
+      <!-- Collins -->
+      <div class="artist-card">
+        <div class="artist-photo-wrap">
+          <img src="images/collins.jpg" alt="Collins" />
+        </div>
+        <p class="artist-name">Collins</p>
+        <a class="artist-link" href="https://www.cagelessbirds.com/collins-odwyer" target="_blank" rel="noopener">Support their mission →</a>
+      </div>
+
+      <!-- Emily -->
+      <div class="artist-card">
+        <div class="artist-photo-wrap">
+          <img src="images/emily.jpg" alt="Emily" />
+        </div>
+        <p class="artist-name">Emily</p>
+        <a class="artist-link" href="https://www.cagelessbirds.com/emily-pell" target="_blank" rel="noopener">Support their mission →</a>
+      </div>
+
+      <!-- Heather -->
+      <div class="artist-card">
+        <div class="artist-photo-wrap">
+          <img src="images/heather.jpg" alt="Heather" />
+        </div>
+        <p class="artist-name">Heather</p>
+        <a class="artist-link" href="https://www.instagram.com/heatherlilyaa/" target="_blank" rel="noopener">Support their mission →</a>
+      </div>
+
+    </div>
+
+    <!-- ── ROW 2: Julie, Noah ── -->
+    <div class="grid-2">
+
+      <!-- Julie -->
+      <div class="artist-card">
+        <div class="artist-photo-wrap">
+          <img src="images/julie-cropped.jpg" alt="Julie" />
+        </div>
+        <p class="artist-name">Julie</p>
+        <a class="artist-link" href="https://www.juliesusanneclark.com/support" target="_blank" rel="noopener">Support their mission →</a>
+      </div>
+
+      <!-- Noah -->
+      <div class="artist-card">
+        <div class="artist-photo-wrap">
+          <img src="images/noah.jpg" alt="Noah" />
+        </div>
+        <p class="artist-name">Noah</p>
+        <a class="artist-link" href="https://www.cagelessbirds.com/noah-stephens" target="_blank" rel="noopener">Support their mission →</a>
+      </div>
+
+    </div>
+
+    <!-- ── ROW 3: Phyllis, Sydnee ── -->
+    <div class="grid-2">
+
+      <!-- Phyllis -->
+      <div class="artist-card">
+        <div class="artist-photo-wrap">
+          <img src="images/phyllis.jpg" alt="Phyllis" />
+        </div>
+        <p class="artist-name">Phyllis</p>
+        <a class="artist-link" href="https://www.cagelessbirds.com/phyllis-unkefer" target="_blank" rel="noopener">Support their mission →</a>
+      </div>
+
+      <!-- Sydnee -->
+      <div class="artist-card">
+        <div class="artist-photo-wrap">
+          <img src="images/sydnee.jpg" alt="Sydnee" />
+        </div>
+        <p class="artist-name">Sydnee</p>
+        <a class="artist-link" href="https://www.cagelessbirds.com/sydnee-mela" target="_blank" rel="noopener">Support their mission →</a>
+      </div>
+
+    </div>
+
+    <!-- ── FOOTER ── -->
+    <div class="footer">
+      <p>Questions? <a href="mailto:info@bridgeandsafehouse.org">info@bridgeandsafehouse.org</a></p>
+      <p>Tickets at <a href="https://bridgeandsafehouse.org/events" target="_blank" rel="noopener">bridgeandsafehouse.org/events</a> &nbsp;|&nbsp; $20</p>
+    </div>
+
+  </div>
+</body>
+</html>
